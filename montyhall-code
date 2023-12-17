@@ -1,0 +1,44 @@
+# Lists to store probability values after each iteration 
+switch_win_probability = [] 
+stick_win_probability = []
+# The prizes behind the 3 doors: 
+#1 - Car, #2 - Goat, #3 - Goat 
+doors = ["car","goat","goat"] # These could be in any order
+# Monte Carlo Simulation 
+def monte_carlo(iterations): 
+         # Counting wins by switch and stick 
+         win_switch_counter = 0 
+          win_stick_counter = 0 
+          for i in range(iterations): 
+         # Randomize the order of prizes behind each door 
+         import random 
+         random.shuffle(doors) 
+# Your initial choice from either of the 3 doors 
+k = random.randrange(0, 2)
+# If you don't get the car behind your choice 
+# Switching would be the right move
+if doors [k] != 'car':
+        win_switch_counter += 1
+# If you get the car behind your choice 
+# Sticking would be the right move
+else:
+         win_stick_counter += 1
+# Calculating probablities 
+win_by_switch = win_switch_counter/(i+1) 
+win_by_stick = win_stick_counter/(i+1)
+# Updating the list values
+switch_win_probability.append(win_by_switch) 
+stick_win_probability.append(win_by_stick)
+# Return final values after all iterations 
+return switch_win_probability [-1], stick_win_probability [-1]
+
+# Call the function with preferred number of iterations 
+switch, stick = monte_carlo(1000) 
+# Print the probability values
+print('Always switching winning probability:', switch) 
+print('Always sticking winning probability:', stick) 
+# Plotting the data 
+import matplotlib.pyplot as pit 
+plt.plot(switch_win_probability) 
+plt.plot(stick_win_probability)
+  
